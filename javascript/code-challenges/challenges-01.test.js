@@ -11,9 +11,7 @@ Use `forEach` to loop over the input array and work with each value.  Push the n
 const addOne = (arr) => {
   let arr2 = [];
   arr.forEach(element => {
-    console.log(element);
     let newNum = element + 1;
-    console.log(newNum);
     arr2.push(newNum);
   });
   return arr2;
