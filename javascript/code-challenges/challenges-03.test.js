@@ -8,7 +8,11 @@ Write a function called addTwo that takes in an array and adds two to every valu
 
 const addTwo = (arr) => {
   // Solution code here...
-
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    newArr.push(arr[i] + 2);
+  }
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -21,6 +25,7 @@ For example, typeNum([1, 'bob' ,3]) returns [1,3].
 
 const typeNum = (arr) => {
   // Solution code here...
+  return arr.filter(num => typeof(num) === 'number');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -46,6 +51,7 @@ For example, oddValues([1,2,3]) returns [1,3].
 
 const oddValues = (arr) => {
   // Solution code here...
+  return arr.filter(num => num % 2 === 1);
 };
 
 /* ------------------------------------------------------------------------------------------------
