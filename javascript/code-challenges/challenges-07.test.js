@@ -63,7 +63,7 @@ For example, if the input is 'Welcome', the output will be:
 
 const howMuchPencil = (str) => {
   let result = [];
-  
+
   for (let i = 0; i <= str.length; i++){
     let newResult = str.slice(i);
     result.push(newResult);
@@ -130,6 +130,14 @@ const gruffaloCrumble = {
 const listFoods = (recipe) => {
   let result = [];
   // Solution code here...
+  let arr = recipe.ingredients;
+  for (let i = 0; i < arr.length; i++) {
+    let firstSpace = arr[i].indexOf(' ');
+    let el = arr[i].slice(firstSpace+1);
+    let secondSpace = el.indexOf(' ');
+    el = el.slice(secondSpace+1);
+    result.push(el);
+  }
   return result;
 };
 
