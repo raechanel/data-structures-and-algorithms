@@ -10,8 +10,8 @@ E.g. [4,2,7,5,9,2] -> 9
 ------------------------------------------------------------------------------------------------ */
 const maxInArray = (arr) => {
   // Solution code here...
-  arr.reduce(function(a,b) {
-    return Math.max(a,b);
+  return arr.reduce(function (a, b) {
+    return Math.max(a, b);
   });
 };
 
@@ -22,7 +22,8 @@ Write a function named getCourseKeys that takes in the courseInfo object and ret
 
 For example: (['name', 'duration', 'topics', 'finalExam']).
 ------------------------------------------------------------------------------------------------ */
-const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks'},
+const courseInfo = {
+  name: 'Code 301', duration: { dayTrack: '4 weeks', eveningTrack: '8 weeks' },
   topics: ['SMACSS', 'APIs', 'NodeJS', 'SQL', 'jQuery', 'functional programming'],
   finalExam: true
 };
@@ -41,12 +42,9 @@ Write a function named checkValues that takes in an object and a value and retur
 
 const checkValues = (obj, value) => {
   // Solution code here...
-  let result;
-  if (Object.values(obj) === value) {
-    result = true;
-  } else {
-    result = false;}
-  return result;
+  let valueArr = Object.values(obj);
+  if (valueArr.includes(value)) return true;
+  return false;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -70,6 +68,11 @@ HR has asked you to change the data to make it easier to print so that it looks 
 
 const updateNumbers = (obj) => {
   // Solution code here...
+  let results = [];
+  for (const [key, value] of Object.entries(obj)) {
+    results.push(`${key}: ${value}`);
+  }
+  return results;
 };
 
 
@@ -124,8 +127,12 @@ const characters = [
 ];
 
 const getHouses = (arr) => {
-  let houses = [];
   // Solution code here...
+  let houses = [];
+  arr.forEach(obj => {
+    let names = Object.values(obj);
+    houses.push(names[names.length - 1]);
+  });
   return houses;
 };
 
@@ -143,7 +150,11 @@ hasChildrenValues(characters, 'Sansa') will return false
 
 const hasChildrenValues = (arr, character) => {
   // Solution code here...
-
+  let char = arr.filter(obj => obj.name === character);
+  let kidsObj = {};
+  if (char[0].children) kidsObj.kids = char[0].children;
+  if (Object.values(kidsObj).length > 0) return true;
+  return false;
 };
 
 /* ------------------------------------------------------------------------------------------------
