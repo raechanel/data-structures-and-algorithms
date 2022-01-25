@@ -18,9 +18,12 @@ Becomes:
 ]
 ------------------------------------------------------------------------------------------------ */
 
-function transformToLis(obj){
+function transformToLis(obj) {
   // Solution code here...
-};
+  return Object.keys(obj).map(key => {
+    return `<li>${key}: ${obj[key]}</li>`;
+  });
+}
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
@@ -36,15 +39,15 @@ const count = (target, input) => {
   // Solution code here...
   return input.reduce((grandTotal, arr) => {
 
-    let something = arr.reduce((arrayTotal, value) =>{
+    let timesIn = arr.reduce((subTotal, value) => {
 
-      if(value === target){
-        return arrayTotal + 1;
+      if (value === target) {
+        return subTotal + 1;
       }
-      return arrayTotal;
-    },0);
-    return grandTotal + something;
-  },0);
+      return subTotal;
+    }, 0);
+    return grandTotal + timesIn;
+  }, 0);
 };
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -58,7 +61,7 @@ For example, [[1, 2, 3, 4, 5], [6, 7, 2, 4, 5, 7], [9, 2, 3, 6,]] returns 66.
 
 const totalSum = (input) => {
   // Solution code here...
-  return input.reduce((total, arr) => total += arr.reduce((subTotal, value) => subTotal+= value), 0);
+  return input.reduce((total, arr) => total += arr.reduce((subTotal, value) => subTotal += value), 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -75,6 +78,9 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 
 const divisibleByFiveTwoToThePower = (input) => {
   // Solution code here...
+  return input.map( row => {
+    return row.filter(val => typeof val === 'number' && val % 5 === 0).map(num => Math.pow(2, num));
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -141,6 +147,7 @@ let starWarsData = [{
 
 let findMaleAndFemale = (data) => {
   // Solution code here...
+  
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -166,8 +173,8 @@ Run your tests from the console: jest challenges-10.test.js
 
 describe('Testing challenge 1', () => {
   test('It should return a list of key value pairs inside of li tags', () => {
-    expect(transformToLis({name: 'bob', age: 32})[0]).toStrictEqual(`<li>name: bob</li>`);
-    expect(transformToLis({name: 'bob', age: 32})[1]).toStrictEqual(`<li>age: 32</li>`);
+    expect(transformToLis({ name: 'bob', age: 32 })[0]).toStrictEqual(`<li>name: bob</li>`);
+    expect(transformToLis({ name: 'bob', age: 32 })[1]).toStrictEqual(`<li>age: 32</li>`);
     expect(transformToLis({})).toStrictEqual([]);
   });
 });
