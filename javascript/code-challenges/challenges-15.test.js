@@ -26,6 +26,9 @@ For example, ['apple', 'banana', 'MacGyver'] returns ['Apple', 'Banana', 'MacGyv
 
 const toTitleCase = (arr) => {
   // Solution code here...
+  return arr.map(word => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -101,6 +104,7 @@ let starWarsData = [{
 
 let biggerThanLuke = (arr) => {
   // Solution code here...
+  return arr.filter(character => character.mass > 77).map(character => character.name).join(' - ');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -135,6 +139,8 @@ https:/missingslash.org returns false because the URL is malformed
 ------------------------------------------------------------------------------------------------ */
 const isSecure = (url) => {
   // Solution code here...
+  let regex = /^[h][t][t][p][s][:][/][/]/;
+  return regex.test(url);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -158,6 +164,32 @@ Here is a sample board:
 
 const detectTicTacToeWin = (board) => {
   // Solution code here...
+  let outcome = [];
+  board.forEach(el => {
+    el.forEach(value => {
+      outcome.push(value);
+    });
+  });
+  for (let i = 0; i < 9; i + 3) {
+    if (outcome[i] === outcome[i + 1] && outcome[i] === outcome[i + 2] && outcome[i] !== '') {
+      return true;
+    } else {
+      for (let i = 0; i < 3; i++) {
+        if (outcome[i] === outcome[i + 3] && outcome[i] === outcome[i + 6] && outcome[i] !== '') {
+          return true;
+        }
+        else {
+          for (let i = 0; i < 3; i + 2) {
+            if (outcome[i] === outcome[4] && outcome[i] === outcome[8 - i] && outcome[i] !== '') {
+              return true;
+            } else {
+              return false;
+            }
+          }
+        }
+      }
+    }
+  }
 };
 
 /* ------------------------------------------------------------------------------------------------
